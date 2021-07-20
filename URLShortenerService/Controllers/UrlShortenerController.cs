@@ -74,16 +74,16 @@ namespace URLShortener.API.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> Statistic(string url)
+        public async Task<IActionResult> Statistic(string path)
         {
             try
             {
-                if (string.IsNullOrEmpty(url))
+                if (string.IsNullOrEmpty(path))
                 {
-                    throw new ArgumentNullException(nameof(url));
+                    throw new ArgumentNullException(nameof(path));
                 }
 
-                var getDecodedUrl = await _urlManager.HandleUrlStat(url);
+                var getDecodedUrl = await _urlManager.HandleUrlStat(path);
                 if (getDecodedUrl != null)
                     return Ok(getDecodedUrl);
                 return BadRequest("No such identifier found for your query");
